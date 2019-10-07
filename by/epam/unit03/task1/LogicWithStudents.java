@@ -1,4 +1,4 @@
-package by.epam.unit03.student;
+package by.epam.unit03.task1;
 
 public class LogicWithStudents {
 

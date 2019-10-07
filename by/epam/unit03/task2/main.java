@@ -1,7 +1,6 @@
-package by.epam.unit03.train;
+package by.epam.unit03.task2;
 
 import by.epam.unit03.scnner.EnterFromConsole;
-import by.epam.unit03.student.LogicWithStudents;
 
 public class main {
 

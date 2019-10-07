@@ -1,4 +1,4 @@
-package by.epam.unit03.train;
+package by.epam.unit03.task2;
 
 public class Train {
 
