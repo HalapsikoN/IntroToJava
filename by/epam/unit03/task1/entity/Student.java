@@ -73,15 +73,4 @@ public class Student {
                 ", groupNumber=" + groupNumber +
                 '}';
     }
-
-    public boolean isGoodStudent() {
-        boolean result = true;
-        for (int i = 0; i < marks.length; ++i) {
-            if (marks[i] < 9) {
-                result = false;
-                break;
-            }
-        }
-        return result;
-    }
 }

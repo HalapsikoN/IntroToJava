@@ -3,6 +3,7 @@ package by.epam.unit03.task5;
 import by.epam.unit03.scnner.EnterFromConsole;
 import by.epam.unit03.task5.entity.Customer;
 import by.epam.unit03.task5.entity.Shop;
+import by.epam.unit03.task5.logic.ShopLogic;
 
 public class Main {
 
@@ -29,7 +30,7 @@ public class Main {
         }
 
         System.out.println("List of customers (sorted):");
-        for (Customer customer : shop.listOfCustomers()) {
+        for (Customer customer : ShopLogic.listOfCustomersByAlphabet(shop)) {
             System.out.println(customer);
         }
 
@@ -39,10 +40,10 @@ public class Main {
         System.out.println("Enter the end to interval:");
         int end = EnterFromConsole.EnterInteger();
         System.out.println("List of customers who is in [" + begin + "][" + end + "]:");
-        if (shop.customersByCreditsFrom(begin, end) == null) {
+        if (ShopLogic.listOfCustomersByCreditNumberFromInterval(shop, begin, end) == null) {
             System.out.println("NO such customers");
         } else {
-            for (Customer customer : shop.customersByCreditsFrom(begin, end)) {
+            for (Customer customer : ShopLogic.listOfCustomersByCreditNumberFromInterval(shop, begin, end)) {
                 System.out.println(customer);
             }
         }
