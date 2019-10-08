@@ -2,6 +2,9 @@ package by.epam.unit03.task1.entity;
 
 //вынести проверку isGoodStudent из Student в StudentLogic
 
+import java.util.Arrays;
+import java.util.Objects;
+
 public class Student {
 
     private String surname;
@@ -72,5 +75,23 @@ public class Student {
                 "surname='" + surname + '\'' +
                 ", groupNumber=" + groupNumber +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return groupNumber == student.groupNumber &&
+                surname.equals(student.surname) &&
+                initials.equals(student.initials) &&
+                Arrays.equals(marks, student.marks);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(surname, initials, groupNumber);
+        result = 31 * result + Arrays.hashCode(marks);
+        return result;
     }
 }

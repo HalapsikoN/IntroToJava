@@ -1,5 +1,7 @@
 package by.epam.unit03.task3.entity;
 
+import java.util.Objects;
+
 public class Counter {
 
     private int number;
@@ -62,5 +64,20 @@ public class Counter {
         return "{" +
                 "State is " + number +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Counter counter = (Counter) o;
+        return number == counter.number &&
+                max == counter.max &&
+                min == counter.min;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(number, max, min);
     }
 }

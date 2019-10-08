@@ -1,5 +1,7 @@
 package by.epam.unit03.task2.entity;
 
+import java.util.Objects;
+
 public class Train {
 
     private String destination;
@@ -58,5 +60,20 @@ public class Train {
                 ", trainNumber=" + trainNumber +
                 ", timeInHours=" + timeInHours +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Train train = (Train) o;
+        return trainNumber == train.trainNumber &&
+                Double.compare(train.timeInHours, timeInHours) == 0 &&
+                destination.equals(train.destination);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(destination, trainNumber, timeInHours);
     }
 }

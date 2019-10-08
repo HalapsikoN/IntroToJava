@@ -1,5 +1,7 @@
 package by.epam.unit03.task4.entity;
 
+import java.util.Objects;
+
 public class Clock {
 
     private int second;
@@ -73,5 +75,20 @@ public class Clock {
                 + minute + ":" +
                 +second +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Clock clock = (Clock) o;
+        return second == clock.second &&
+                minute == clock.minute &&
+                hour == clock.hour;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(second, minute, hour);
     }
 }

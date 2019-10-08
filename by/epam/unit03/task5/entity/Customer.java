@@ -1,5 +1,7 @@
 package by.epam.unit03.task5.entity;
 
+import java.util.Objects;
+
 public class Customer {
 
     private int id;
@@ -93,5 +95,24 @@ public class Customer {
                 ", creditCardNumber=" + creditCardNumber +
                 ", bankAccount=" + bankAccount +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customer customer = (Customer) o;
+        return id == customer.id &&
+                creditCardNumber == customer.creditCardNumber &&
+                bankAccount == customer.bankAccount &&
+                surname.equals(customer.surname) &&
+                name.equals(customer.name) &&
+                patronymic.equals(customer.patronymic) &&
+                address.equals(customer.address);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, surname, name, patronymic, address, creditCardNumber, bankAccount);
     }
 }
