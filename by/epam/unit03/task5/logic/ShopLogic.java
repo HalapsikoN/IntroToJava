@@ -5,7 +5,7 @@ import by.epam.unit03.task5.entity.Shop;
 
 public class ShopLogic {
 
-    public static Customer[] listOfCustomersByAlphabet(Shop shop) {
+    public static Customer[] arrayOfCustomersByAlphabet(Shop shop) {
         Customer[] customers = shop.getCustomers();
 
         for (int i = 0; i < customers.length - 1; ++i) {
@@ -37,7 +37,7 @@ public class ShopLogic {
         return customers;
     }
 
-    public static Customer[] listOfCustomersByCreditNumberFromInterval(Shop shop, int begin, int end) {
+    public static Customer[] arrayOfCustomersByCreditNumberFromInterval(Shop shop, int begin, int end) {
         Customer[] customers = shop.getCustomers();
 
         if (end < begin) {
@@ -51,10 +51,6 @@ public class ShopLogic {
             if (customer.getCreditCardNumber() > begin && customer.getCreditCardNumber() < end) {
                 numberOfSuchPeople++;
             }
-        }
-
-        if (numberOfSuchPeople == 0) {
-            return null;
         }
 
         Customer[] result = new Customer[numberOfSuchPeople];

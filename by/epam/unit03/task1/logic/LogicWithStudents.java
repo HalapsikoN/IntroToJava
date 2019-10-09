@@ -25,10 +25,6 @@ public class LogicWithStudents {
             }
         }
 
-        if (numberOfGoodStudents == 0) {
-            return null;
-        }
-
         result = new Student[numberOfGoodStudents];
         for (int i = 0; i < students.length; ++i) {
             int j = 0;
