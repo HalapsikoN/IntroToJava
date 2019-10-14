@@ -16,22 +16,22 @@ public class State {
         this.name = name;
         this.districts = districts;
 
-        boolean isCity=false;
-        for (District district:districts) {
+        boolean isCity = false;
+        for (District district : districts) {
             if (capital.equals(district.getMainCity())) {
                 isCity = true;
             }
         }
-        if(!isCity){
-            capital=districts[0].getMainCity();
+        if (!isCity) {
+            capital = districts[0].getMainCity();
         }
         this.capital = capital;
 
-        double allArea=0;
-        for(District district:districts){
-            allArea+=district.getArea();
+        double allArea = 0;
+        for (District district : districts) {
+            allArea += district.getArea();
         }
-        this.area=allArea;
+        this.area = allArea;
     }
 
     public String getName() {

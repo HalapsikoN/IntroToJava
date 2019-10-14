@@ -16,24 +16,24 @@ public class District {
         this.name = name;
         this.regions = regions;
 
-        boolean isCity=false;
-        for(Region region:regions){
-            for(City city:region.getCities()){
-                if(city.equals(mainCity)){
-                    isCity=true;
+        boolean isCity = false;
+        for (Region region : regions) {
+            for (City city : region.getCities()) {
+                if (city.equals(mainCity)) {
+                    isCity = true;
                 }
             }
         }
-        if(!isCity){
-            mainCity=regions[0].getCities()[0];
+        if (!isCity) {
+            mainCity = regions[0].getCities()[0];
         }
-        this.mainCity=mainCity;
+        this.mainCity = mainCity;
 
-        double allArea=0;
-        for(Region region:regions){
-            allArea+=region.getArea();
+        double allArea = 0;
+        for (Region region : regions) {
+            allArea += region.getArea();
         }
-        this.area=allArea;
+        this.area = allArea;
     }
 
     public String getName() {

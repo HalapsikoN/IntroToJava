@@ -37,12 +37,12 @@ public class Region {
     }
 
     public void setArea(double area) {
-        double areaOfCities=0;
-        for (City city:cities){
-            areaOfCities+=city.getArea();
+        double areaOfCities = 0;
+        for (City city : cities) {
+            areaOfCities += city.getArea();
         }
 
-        area=(areaOfCities>area)?areaOfCities:area;
+        area = (areaOfCities > area) ? areaOfCities : area;
 
         this.area = area;
     }
