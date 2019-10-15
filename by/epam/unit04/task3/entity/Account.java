@@ -6,12 +6,12 @@ public class Account implements Comparable<Account> {
 
     private double amount;
 
-    private boolean isBlocked;
+    private boolean block;
 
-    public Account(int numberOfAccount, double amount, boolean isBlocked) {
+    public Account(int numberOfAccount, double amount, boolean block) {
         this.numberOfAccount = numberOfAccount;
         this.amount = amount;
-        this.isBlocked = isBlocked;
+        this.block = block;
     }
 
     public Account() {
@@ -34,12 +34,12 @@ public class Account implements Comparable<Account> {
         this.amount = amount;
     }
 
-    public boolean isBlocked() {
-        return isBlocked;
+    public boolean isBlock() {
+        return block;
     }
 
-    public void setBlocked(boolean blocked) {
-        isBlocked = blocked;
+    public void setBlock(boolean block) {
+        this.block = block;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class Account implements Comparable<Account> {
 
         if (numberOfAccount != account.numberOfAccount) return false;
         if (Double.compare(account.amount, amount) != 0) return false;
-        return isBlocked == account.isBlocked;
+        return block == account.block;
     }
 
     @Override
@@ -61,7 +61,7 @@ public class Account implements Comparable<Account> {
         result = numberOfAccount;
         temp = Double.doubleToLongBits(amount);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (isBlocked ? 1 : 0);
+        result = 31 * result + (block ? 1 : 0);
         return result;
     }
 
@@ -70,7 +70,7 @@ public class Account implements Comparable<Account> {
         return "{" +
                 "numberOfAccount=" + numberOfAccount +
                 ", amount=" + amount +
-                ", isBlocked=" + isBlocked +
+                ", block=" + block +
                 "}\n";
     }
 

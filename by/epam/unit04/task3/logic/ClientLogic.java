@@ -19,13 +19,13 @@ public class ClientLogic {
     public static void blockAccountByNumber(Client client, int numberOfAccount) {
 
         Account account = findAccountByNumber(client, numberOfAccount);
-        account.setBlocked(true);
+        account.setBlock(true);
     }
 
     public static void unblockAccountByNumber(Client client, int numberOfAccount) {
 
         Account account = findAccountByNumber(client, numberOfAccount);
-        account.setBlocked(false);
+        account.setBlock(false);
     }
 
     public static void sortAccountsByAmount(Client client) {
