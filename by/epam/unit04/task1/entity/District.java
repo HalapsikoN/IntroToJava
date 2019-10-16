@@ -1,39 +1,26 @@
 package by.epam.unit04.task1.entity;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class District {
 
     private String name;
 
-    private Region[] regions;
+    private Set<Region> regions;
 
     private City mainCity;
 
-    private double area;
-
-    public District(String name, Region[] regions, City mainCity) {
+    public District(String name, Set<Region> regions, City mainCity) {
         this.name = name;
         this.regions = regions;
+        this.setMainCity(mainCity);
+    }
 
-        boolean isCity = false;
-        for (Region region : regions) {
-            for (City city : region.getCities()) {
-                if (city.equals(mainCity)) {
-                    isCity = true;
-                }
-            }
-        }
-        if (!isCity) {
-            mainCity = regions[0].getCities()[0];
-        }
-        this.mainCity = mainCity;
-
-        double allArea = 0;
-        for (Region region : regions) {
-            allArea += region.getArea();
-        }
-        this.area = allArea;
+    public District(String name, Region region, City mainCity) {
+        this.name = name;
+        this.regions = new HashSet<>();
+        this.regions.add(region);
+        this.setMainCity(mainCity);
     }
 
     public String getName() {
@@ -44,12 +31,16 @@ public class District {
         this.name = name;
     }
 
-    public Region[] getRegions() {
+    public Set<Region> getRegions() {
         return regions;
     }
 
-    public void setRegions(Region[] regions) {
+    public void setRegions(Set<Region> regions) {
         this.regions = regions;
+    }
+
+    public void addRegion(Region region) {
+        this.regions.add(region);
     }
 
     public City getMainCity() {
@@ -57,11 +48,18 @@ public class District {
     }
 
     public void setMainCity(City mainCity) {
+        boolean isCity = false;
+        for (Region region : regions) {
+            for (City city : region.getCities()) {
+                if (city.equals(mainCity)) {
+                    isCity = true;
+                }
+            }
+        }
+        if (!isCity) {
+            mainCity = regions.iterator().next().getCities().iterator().next();
+        }
         this.mainCity = mainCity;
-    }
-
-    public double getArea() {
-        return area;
     }
 
     @Override
@@ -71,21 +69,16 @@ public class District {
 
         District district = (District) o;
 
-        if (Double.compare(district.area, area) != 0) return false;
         if (!name.equals(district.name)) return false;
-        if (!Arrays.equals(regions, district.regions)) return false;
+        if (!regions.equals(district.regions)) return false;
         return mainCity.equals(district.mainCity);
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        result = name.hashCode();
-        result = 31 * result + Arrays.hashCode(regions);
+        int result = name.hashCode();
+        result = 31 * result + regions.hashCode();
         result = 31 * result + mainCity.hashCode();
-        temp = Double.doubleToLongBits(area);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
 
@@ -93,9 +86,8 @@ public class District {
     public String toString() {
         return "District{" +
                 "name='" + name + '\'' +
-                ", regions=" + Arrays.toString(regions) +
+                ", regions=" + regions +
                 ", mainCity=" + mainCity +
-                ", area=" + area +
-                "}\n";
+                '}';
     }
 }

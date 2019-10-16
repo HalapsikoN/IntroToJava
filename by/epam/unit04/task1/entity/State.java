@@ -1,37 +1,27 @@
 package by.epam.unit04.task1.entity;
 
-import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class State {
 
     private String name;
 
-    private District[] districts;
+    private Set<District> districts;
 
     private City capital;
 
-    private double area;
-
-    public State(String name, District[] districts, City capital) {
+    public State(String name, Set<District> districts, City capital) {
         this.name = name;
         this.districts = districts;
+        this.setCapital(capital);
+    }
 
-        boolean isCity = false;
-        for (District district : districts) {
-            if (capital.equals(district.getMainCity())) {
-                isCity = true;
-            }
-        }
-        if (!isCity) {
-            capital = districts[0].getMainCity();
-        }
-        this.capital = capital;
-
-        double allArea = 0;
-        for (District district : districts) {
-            allArea += district.getArea();
-        }
-        this.area = allArea;
+    public State(String name, District district, City capital) {
+        this.name = name;
+        this.districts = new HashSet<>();
+        this.districts.add(district);
+        this.setCapital(capital);
     }
 
     public String getName() {
@@ -42,12 +32,16 @@ public class State {
         this.name = name;
     }
 
-    public District[] getDistricts() {
+    public Set<District> getDistricts() {
         return districts;
     }
 
-    public void setDistricts(District[] districts) {
+    public void setDistricts(Set<District> districts) {
         this.districts = districts;
+    }
+
+    public void addDistirct(District district) {
+        this.districts.add(district);
     }
 
     public City getCapital() {
@@ -55,11 +49,16 @@ public class State {
     }
 
     public void setCapital(City capital) {
+        boolean isCity = false;
+        for (District district : districts) {
+            if (capital.equals(district.getMainCity())) {
+                isCity = true;
+            }
+        }
+        if (!isCity) {
+            capital = districts.iterator().next().getMainCity();
+        }
         this.capital = capital;
-    }
-
-    public double getArea() {
-        return area;
     }
 
     @Override
@@ -69,21 +68,16 @@ public class State {
 
         State state = (State) o;
 
-        if (Double.compare(state.area, area) != 0) return false;
         if (!name.equals(state.name)) return false;
-        if (!Arrays.equals(districts, state.districts)) return false;
+        if (!districts.equals(state.districts)) return false;
         return capital.equals(state.capital);
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        result = name.hashCode();
-        result = 31 * result + Arrays.hashCode(districts);
+        int result = name.hashCode();
+        result = 31 * result + districts.hashCode();
         result = 31 * result + capital.hashCode();
-        temp = Double.doubleToLongBits(area);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
 
@@ -91,9 +85,8 @@ public class State {
     public String toString() {
         return "State{" +
                 "name='" + name + '\'' +
-                ", districts=" + Arrays.toString(districts) +
+                ", districts=" + districts +
                 ", capital=" + capital +
-                ", area=" + area +
                 '}';
     }
 }

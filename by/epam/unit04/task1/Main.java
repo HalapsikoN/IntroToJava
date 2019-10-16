@@ -6,54 +6,58 @@ import by.epam.unit04.task1.entity.Region;
 import by.epam.unit04.task1.entity.State;
 import by.epam.unit04.task1.logic.StateLogic;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Main {
 
     public static void main(String args[]) {
 
-        City[][][] citiesGroup = new City[2][2][2];
-        for (int i = 0; i < citiesGroup.length; ++i) {
-            for (int j = 0; j < citiesGroup[i].length; ++j) {
-                for (int k = 0; k < citiesGroup[i][j].length; ++k) {
-                    String name = "City" + (int) (Math.random() * 100);
-                    double area = Math.random() * 10;
-                    citiesGroup[i][j][k] = new City(name, area);
-                }
-            }
-        }
-
-        Region[][] regions = new Region[2][2];
-        for (int i = 0; i < regions.length; ++i) {
-            for (int j = 0; j < regions[i].length; ++j) {
-                String name = "Region" + (int) (Math.random() * 100);
-                double area = Math.random() * 100;
-                regions[i][j] = new Region(name, citiesGroup[i][j], area);
-            }
-        }
-
-        District[] districts = new District[2];
-        for (int i = 0; i < districts.length; ++i) {
-            String name = "District" + (int) (Math.random() * 100);
-            String nameCity = "City" + (int) (Math.random() * 100);
+        Set<City> cities1 = new HashSet<>();
+        for (int i = 0; i < 2; ++i) {
+            String name = "City" + (int) (Math.random() * 100);
             double area = Math.random() * 10;
-            City city = new City(nameCity, area);
-            districts[i] = new District(name, regions[i], city);
+            cities1.add(new City(name, area));
+        }
+        Set<City> cities2 = new HashSet<>();
+        for (int i = 0; i < 2; ++i) {
+            String name = "City" + (int) (Math.random() * 100);
+            double area = Math.random() * 10;
+            cities2.add(new City(name, area));
+        }
+        Set<City> cities3 = new HashSet<>();
+        for (int i = 0; i < 2; ++i) {
+            String name = "City" + (int) (Math.random() * 100);
+            double area = Math.random() * 10;
+            cities3.add(new City(name, area));
+        }
+        Set<City> cities4 = new HashSet<>();
+        for (int i = 0; i < 2; ++i) {
+            String name = "City" + (int) (Math.random() * 100);
+            double area = Math.random() * 10;
+            cities4.add(new City(name, area));
         }
 
-        String name = "State" + (int) (Math.random() * 100);
-        String nameCity = "City" + (int) (Math.random() * 100);
-        double area = Math.random() * 10;
-        City city = new City(nameCity, area);
-        State state = new State(name, districts, city);
+        Region region1 = new Region("Regi1", cities1, Math.random() * 1000);
+        Region region2 = new Region("Regi2", cities2, Math.random() * 1000);
+        Region region3 = new Region("Regi3", cities3, Math.random() * 1000);
+        Region region4 = new Region("Regi4", cities4, Math.random() * 1000);
+
+        District district1 = new District("Distir1", region1, new City());
+        district1.addRegion(region2);
+        District district2 = new District("Disti2", region3, new City());
+        district2.addRegion(region4);
+
+        State state = new State("Strana", district1, new City());
+        state.addDistirct(district2);
 
         System.out.println(state);
-        System.out.println();
 
+        System.out.println();
+        StateLogic stateLogic = new StateLogic();
         System.out.println("Capital: " + state.getCapital());
-        System.out.println("Number of districts: " + StateLogic.numberOfDistricts(state));
-        System.out.println("Total area: " + state.getArea());
-        System.out.println("District capitals: " + Arrays.toString(StateLogic.arrayOfMainCitiesOfDistricts(state)));
+        System.out.println("Number of districts: " + stateLogic.numberOfDistricts(state));
+        System.out.println("Total area: " + stateLogic.getAreaOfState(state));
+        System.out.println("District capitals: " + stateLogic.setOfMainCitiesOfDistricts(state));
     }
 }

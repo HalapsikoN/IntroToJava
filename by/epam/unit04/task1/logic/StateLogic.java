@@ -2,20 +2,34 @@ package by.epam.unit04.task1.logic;
 
 import by.epam.unit04.task1.entity.City;
 import by.epam.unit04.task1.entity.District;
+import by.epam.unit04.task1.entity.Region;
 import by.epam.unit04.task1.entity.State;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class StateLogic {
 
-    public static int numberOfDistricts(State state) {
-        return state.getDistricts().length;
+    public int numberOfDistricts(State state) {
+        return state.getDistricts().size();
     }
 
-    public static City[] arrayOfMainCitiesOfDistricts(State state) {
-        City[] cities = new City[numberOfDistricts(state)];
-        int i = 0;
+    public double getAreaOfState(State state) {
+        double result = 0;
         for (District district : state.getDistricts()) {
-            cities[i++] = district.getMainCity();
+            for (Region region : district.getRegions()) {
+                result += region.getArea();
+            }
         }
-        return cities;
+        return result;
     }
+
+    public Set<City> setOfMainCitiesOfDistricts(State state) {
+        Set<City> result = new HashSet<>();
+        for (District district : state.getDistricts()) {
+            result.add(district.getMainCity());
+        }
+        return result;
+    }
+
 }

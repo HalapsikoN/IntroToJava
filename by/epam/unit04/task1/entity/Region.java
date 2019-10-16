@@ -1,18 +1,25 @@
 package by.epam.unit04.task1.entity;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class Region {
 
     private String name;
 
-    private City[] cities;
+    private Set<City> cities;
 
     private double area;
 
-    public Region(String name, City[] cities, double area) {
+    public Region(String name, Set<City> cities, double area) {
         this.name = name;
         this.cities = cities;
+        this.setArea(area);
+    }
+
+    public Region(String name, City city, double area) {
+        this.name = name;
+        this.cities = new HashSet<>();
+        this.cities.add(city);
         this.setArea(area);
     }
 
@@ -24,12 +31,17 @@ public class Region {
         this.name = name;
     }
 
-    public City[] getCities() {
+    public Set<City> getCities() {
         return cities;
     }
 
-    public void setCities(City[] cities) {
+    public void setCities(Set<City> cities) {
         this.cities = cities;
+    }
+
+    public void addCity(City city) {
+        this.area += city.getArea();
+        this.cities.add(city);
     }
 
     public double getArea() {
@@ -56,7 +68,7 @@ public class Region {
 
         if (Double.compare(region.area, area) != 0) return false;
         if (!name.equals(region.name)) return false;
-        return Arrays.equals(cities, region.cities);
+        return cities.equals(region.cities);
     }
 
     @Override
@@ -64,7 +76,7 @@ public class Region {
         int result;
         long temp;
         result = name.hashCode();
-        result = 31 * result + Arrays.hashCode(cities);
+        result = 31 * result + cities.hashCode();
         temp = Double.doubleToLongBits(area);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
@@ -72,10 +84,10 @@ public class Region {
 
     @Override
     public String toString() {
-        return "{" +
+        return "Region{" +
                 "name='" + name + '\'' +
-                ", cities=" + Arrays.toString(cities) +
+                ", cities=" + cities +
                 ", area=" + area +
-                "}";
+                "}\n";
     }
 }
