@@ -2,50 +2,60 @@ package by.epam.unit04.task4.logic;
 
 import by.epam.unit04.task4.entity.TravelAgency;
 import by.epam.unit04.task4.entity.Voucher;
+import by.epam.unit04.task4.enums.Food;
+import by.epam.unit04.task4.enums.Transport;
 import by.epam.unit04.task4.enums.TypeOfTour;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class TravelAgencyLogic {
 
-    public static Voucher giveVoucherByTypeOfTour(TravelAgency travelAgency, TypeOfTour typeOfTour) {
+    public List<Voucher> listOfVouchersByTypeOfTour(TravelAgency travelAgency, TypeOfTour typeOfTour) {
 
-        Voucher searchVoucher = new Voucher();
-        Voucher[] vouchers = travelAgency.getVouchers();
-        for (Voucher voucher : vouchers) {
+        List<Voucher> result = new ArrayList<>();
+        for (Voucher voucher : travelAgency.getVouchers()) {
             if (voucher.getTypeOfTour() == typeOfTour) {
-                searchVoucher = voucher;
-                break;
+                result.add(voucher);
             }
         }
-        return searchVoucher;
+        return result;
     }
 
-    public static Voucher giveVoucherByNumberOfDays(TravelAgency travelAgency, int numberOfDays) {
-        Voucher searchVoucher = new Voucher();
-        Voucher[] vouchers = travelAgency.getVouchers();
-        for (Voucher voucher : vouchers) {
+    public List<Voucher> listOfVouchersByTransport(TravelAgency travelAgency, Transport transport) {
+
+        List<Voucher> result = new ArrayList<>();
+        for (Voucher voucher : travelAgency.getVouchers()) {
+            if (voucher.getTransport() == transport) {
+                result.add(voucher);
+            }
+        }
+        return result;
+    }
+
+    public List<Voucher> listOfVouchersByFood(TravelAgency travelAgency, Food food) {
+
+        List<Voucher> result = new ArrayList<>();
+        for (Voucher voucher : travelAgency.getVouchers()) {
+            if (voucher.getFood() == food) {
+                result.add(voucher);
+            }
+        }
+        return result;
+    }
+
+    public List<Voucher> listOfVouchersByNumberOfDays(TravelAgency travelAgency, int numberOfDays) {
+        List<Voucher> result = new ArrayList<>();
+        for (Voucher voucher : travelAgency.getVouchers()) {
             if (voucher.getNumberOfDays() == numberOfDays) {
-                searchVoucher = voucher;
-                break;
+                result.add(voucher);
             }
         }
-        return searchVoucher;
+        return result;
     }
 
-    public static Voucher giveVoucherByNumber(TravelAgency travelAgency, int number) {
-        Voucher[] vouchers = travelAgency.getVouchers();
-        return (vouchers.length >= number && number >= 0) ? vouchers[number] : new Voucher();
-    }
-
-    public static void sortVoucherByDays(TravelAgency travelAgency) {
-        Voucher[] vouchers = travelAgency.getVouchers();
-        for (int i = 0; i < vouchers.length - 1; ++i) {
-            for (int j = i + 1; j < vouchers.length; ++j) {
-                if (vouchers[i].getNumberOfDays() > vouchers[j].getNumberOfDays()) {
-                    Voucher temp = vouchers[i];
-                    vouchers[i] = vouchers[j];
-                    vouchers[j] = temp;
-                }
-            }
-        }
+    public void sortVoucherByDays(TravelAgency travelAgency) {
+        Collections.sort(travelAgency.getVouchers());
     }
 }

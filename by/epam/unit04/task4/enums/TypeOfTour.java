@@ -6,5 +6,5 @@ public enum TypeOfTour {
     TREATMENT,
     SHOPPING,
     CRUISE,
-    NULL
+    NO_TOUR
 }

@@ -1,16 +1,23 @@
 package by.epam.unit04.task4.entity;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TravelAgency {
 
     private String name;
 
-    private Voucher[] vouchers;
+    private List<Voucher> vouchers;
 
-    public TravelAgency(String name, Voucher[] vouchers) {
+    public TravelAgency(String name, List<Voucher> vouchers) {
         this.name = name;
         this.vouchers = vouchers;
+    }
+
+    public TravelAgency(String name, Voucher voucher) {
+        this.name = name;
+        this.vouchers = new ArrayList<>();
+        this.vouchers.add(voucher);
     }
 
     public String getName() {
@@ -21,12 +28,16 @@ public class TravelAgency {
         this.name = name;
     }
 
-    public Voucher[] getVouchers() {
+    public List<Voucher> getVouchers() {
         return vouchers;
     }
 
-    public void setVouchers(Voucher[] vouchers) {
+    public void setVouchers(List<Voucher> vouchers) {
         this.vouchers = vouchers;
+    }
+
+    public void addVoucher(Voucher voucher) {
+        this.vouchers.add(voucher);
     }
 
     @Override
@@ -37,13 +48,13 @@ public class TravelAgency {
         TravelAgency that = (TravelAgency) o;
 
         if (!name.equals(that.name)) return false;
-        return Arrays.equals(vouchers, that.vouchers);
+        return vouchers.equals(that.vouchers);
     }
 
     @Override
     public int hashCode() {
         int result = name.hashCode();
-        result = 31 * result + Arrays.hashCode(vouchers);
+        result = 31 * result + vouchers.hashCode();
         return result;
     }
 
@@ -51,7 +62,7 @@ public class TravelAgency {
     public String toString() {
         return "TravelAgency{" +
                 "name='" + name + '\'' +
-                ", vouchers=" + Arrays.toString(vouchers) +
+                ", vouchers=" + vouchers +
                 '}';
     }
 }

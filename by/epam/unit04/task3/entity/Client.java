@@ -1,7 +1,6 @@
 package by.epam.unit04.task3.entity;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Client {

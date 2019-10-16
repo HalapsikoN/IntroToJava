@@ -5,5 +5,5 @@ public enum Transport {
     SHIP,
     AIRPLANE,
     CAR,
-    NULL
+    NO_TRANSPORT
 }

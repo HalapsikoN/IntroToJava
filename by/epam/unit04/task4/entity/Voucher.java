@@ -4,7 +4,7 @@ import by.epam.unit04.task4.enums.Food;
 import by.epam.unit04.task4.enums.Transport;
 import by.epam.unit04.task4.enums.TypeOfTour;
 
-public class Voucher {
+public class Voucher implements Comparable<Voucher> {
 
     private TypeOfTour typeOfTour;
 
@@ -22,7 +22,7 @@ public class Voucher {
     }
 
     public Voucher() {
-        this(TypeOfTour.NULL, Transport.NULL, Food.NULL, 0);
+        this(TypeOfTour.NO_TOUR, Transport.NO_TRANSPORT, Food.NO_FOOD, 0);
     }
 
     public TypeOfTour getTypeOfTour() {
@@ -87,5 +87,10 @@ public class Voucher {
                 ", food=" + food +
                 ", numberOfDays=" + numberOfDays +
                 "}\n";
+    }
+
+    @Override
+    public int compareTo(Voucher o) {
+        return this.numberOfDays - o.numberOfDays;
     }
 }
