@@ -15,10 +15,10 @@ public class Sentence {
         this.punctuationMark = punctuationMark;
     }
 
-    public Sentence(Word word, char punctuationMark){
-        this.words=new LinkedList<>();
+    public Sentence(Word word, char punctuationMark) {
+        this.words = new LinkedList<>();
         this.words.add(word);
-        this.punctuationMark=punctuationMark;
+        this.punctuationMark = punctuationMark;
     }
 
     public List<Word> getWords() {
@@ -29,7 +29,7 @@ public class Sentence {
         this.words = words;
     }
 
-    public void addWord(Word word){
+    public void addWord(Word word) {
         this.words.add(word);
     }
 

@@ -37,7 +37,7 @@ public class Text {
         this.sentences = sentences;
     }
 
-    public void addSentence(Sentence sentence){
+    public void addSentence(Sentence sentence) {
         this.sentences.add(sentence);
     }
 

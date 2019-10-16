@@ -1,16 +1,24 @@
 package by.epam.unit04.task3.entity;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Client {
 
     private String name;
 
-    private Account[] accounts;
+    private List<Account> accounts;
 
-    public Client(String name, Account[] accounts) {
+    public Client(String name, List<Account> accounts) {
         this.name = name;
         this.accounts = accounts;
+    }
+
+    public Client(String name, Account account) {
+        this.name = name;
+        this.accounts = new ArrayList<>();
+        this.accounts.add(account);
     }
 
     public String getName() {
@@ -21,12 +29,16 @@ public class Client {
         this.name = name;
     }
 
-    public Account[] getAccounts() {
+    public List<Account> getAccounts() {
         return accounts;
     }
 
-    public void setAccounts(Account[] accounts) {
+    public void setAccounts(List<Account> accounts) {
         this.accounts = accounts;
+    }
+
+    public void addAccount(Account account) {
+        this.accounts.add(account);
     }
 
     @Override
@@ -37,13 +49,13 @@ public class Client {
         Client client = (Client) o;
 
         if (!name.equals(client.name)) return false;
-        return Arrays.equals(accounts, client.accounts);
+        return accounts.equals(client.accounts);
     }
 
     @Override
     public int hashCode() {
         int result = name.hashCode();
-        result = 31 * result + Arrays.hashCode(accounts);
+        result = 31 * result + accounts.hashCode();
         return result;
     }
 
@@ -51,7 +63,7 @@ public class Client {
     public String toString() {
         return "Client{" +
                 "name='" + name + '\'' +
-                ", accounts=" + Arrays.toString(accounts) +
+                ", accounts=" + accounts +
                 '}';
     }
 }

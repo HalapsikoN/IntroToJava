@@ -34,16 +34,16 @@ public class Main {
 
         Text text = new Text("there should be header", sentences);
 
-        TextLogic textLogic=new TextLogic();
+        TextLogic textLogic = new TextLogic();
         System.out.println(textLogic.getText(text));
 
         List<Word> words2 = new LinkedList<>();
-        words2.add( new Word("I"));
-        words2.add( new Word("don't"));
-        words2.add( new Word("know"));
-        words2.add( new Word("what"));
-        words2.add( new Word("to"));
-        words2.add( new Word("add"));
+        words2.add(new Word("I"));
+        words2.add(new Word("don't"));
+        words2.add(new Word("know"));
+        words2.add(new Word("what"));
+        words2.add(new Word("to"));
+        words2.add(new Word("add"));
         Sentence addSentence = new Sentence(words2, '.');
 
         text.addSentence(addSentence);
