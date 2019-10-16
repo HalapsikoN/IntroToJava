@@ -1,24 +1,36 @@
 package by.epam.unit04.task2.entity;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Sentence {
 
-    private Word[] words;
+    private List<Word> words;
 
     private char punctuationMark;
 
-    public Sentence(Word[] words, char punctuationMark) {
+    public Sentence(List<Word> words, char punctuationMark) {
         this.words = words;
-        this.setPunctuationMark(punctuationMark);
+        this.punctuationMark = punctuationMark;
     }
 
-    public Word[] getWords() {
+    public Sentence(Word word, char punctuationMark){
+        this.words=new LinkedList<>();
+        this.words.add(word);
+        this.punctuationMark=punctuationMark;
+    }
+
+    public List<Word> getWords() {
         return words;
     }
 
-    public void setWords(Word[] words) {
+    public void setWords(List<Word> words) {
         this.words = words;
+    }
+
+    public void addWord(Word word){
+        this.words.add(word);
     }
 
     public char getPunctuationMark() {
@@ -26,7 +38,7 @@ public class Sentence {
     }
 
     public void setPunctuationMark(char punctuationMark) {
-        if (punctuationMark != '.' || punctuationMark != '!') {
+        if (punctuationMark != '.' && punctuationMark != '!') {
             punctuationMark = '.';
         }
         this.punctuationMark = punctuationMark;
@@ -40,24 +52,21 @@ public class Sentence {
         Sentence sentence = (Sentence) o;
 
         if (punctuationMark != sentence.punctuationMark) return false;
-        return Arrays.equals(words, sentence.words);
+        return words.equals(sentence.words);
     }
 
     @Override
     public int hashCode() {
-        int result = Arrays.hashCode(words);
+        int result = words.hashCode();
         result = 31 * result + (int) punctuationMark;
         return result;
     }
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < words.length; ++i) {
-            stringBuilder.append(words[i].getWord() + " ");
-        }
-        stringBuilder.deleteCharAt(stringBuilder.length() - 1);
-        stringBuilder.append(punctuationMark);
-        return stringBuilder.toString();
+        return "Sentence{" +
+                "words=" + words +
+                ", punctuationMark=" + punctuationMark +
+                '}';
     }
 }

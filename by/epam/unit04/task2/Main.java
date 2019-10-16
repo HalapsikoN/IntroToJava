@@ -5,45 +5,50 @@ import by.epam.unit04.task2.entity.Text;
 import by.epam.unit04.task2.entity.Word;
 import by.epam.unit04.task2.logic.TextLogic;
 
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+
 public class Main {
 
     public static void main(String args[]) {
-        Word[] words = new Word[5];
-        words[0] = new Word("I");
-        words[1] = new Word("like");
-        words[2] = new Word("dogs");
-        words[3] = new Word("and");
-        words[4] = new Word("cats");
-        Word[] words1 = new Word[7];
-        words1[0] = new Word("I");
-        words1[1] = new Word("like");
-        words1[2] = new Word("to");
-        words1[3] = new Word("watch");
-        words1[4] = new Word("videos");
-        words1[5] = new Word("with");
-        words1[6] = new Word("them");
+        List<Word> words = new LinkedList<>();
+        words.add(new Word("I"));
+        words.add(new Word("like"));
+        words.add(new Word("dogs"));
+        words.add(new Word("and"));
+        words.add(new Word("cats"));
+        List<Word> words1 = new LinkedList<>();
+        words1.add(new Word("I"));
+        words1.add(new Word("like"));
+        words1.add(new Word("to"));
+        words1.add(new Word("watch"));
+        words1.add(new Word("videos"));
+        words1.add(new Word("with"));
+        words1.add(new Word("them"));
 
-        Sentence[] sentences = new Sentence[2];
-        sentences[0] = new Sentence(words, '.');
-        sentences[1] = new Sentence(words1, '.');
+        List<Sentence> sentences = new LinkedList<>();
+        sentences.add(new Sentence(words, '!'));
+        sentences.add(new Sentence(words1, '.'));
 
         Text text = new Text("there should be header", sentences);
 
-        System.out.println("Header: " + text.getHeader());
-        System.out.println(text);
+        TextLogic textLogic=new TextLogic();
+        System.out.println(textLogic.getText(text));
 
-        Word[] words2 = new Word[6];
-        words2[0] = new Word("I");
-        words2[1] = new Word("don't");
-        words2[2] = new Word("know");
-        words2[3] = new Word("what");
-        words2[4] = new Word("to");
-        words2[5] = new Word("add");
+        List<Word> words2 = new LinkedList<>();
+        words2.add( new Word("I"));
+        words2.add( new Word("don't"));
+        words2.add( new Word("know"));
+        words2.add( new Word("what"));
+        words2.add( new Word("to"));
+        words2.add( new Word("add"));
         Sentence addSentence = new Sentence(words2, '.');
 
-        Text newText = TextLogic.addSentenceToText(text, addSentence);
+        text.addSentence(addSentence);
 
-        System.out.println("Header: " + newText.getHeader());
-        System.out.println(newText);
+        System.out.println();
+        System.out.println(textLogic.getText(text));
     }
 }

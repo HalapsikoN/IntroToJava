@@ -2,18 +2,24 @@ package by.epam.unit04.task2.logic;
 
 import by.epam.unit04.task2.entity.Sentence;
 import by.epam.unit04.task2.entity.Text;
+import by.epam.unit04.task2.entity.Word;
 
 public class TextLogic {
 
-    public static Text addSentenceToText(Text text, Sentence sentence) {
+    public String getText(Text text) {
+        StringBuilder stringBuilder=new StringBuilder();
 
-        Sentence[] oldSentences = text.getSentences();
-        Sentence[] newSentences = new Sentence[oldSentences.length + 1];
-        for (int i = 0; i < oldSentences.length; ++i) {
-            newSentences[i] = oldSentences[i];
+        stringBuilder.append(text.getHeader()+"\n");
+        for(Sentence sentence:text.getSentences()){
+            stringBuilder.append(" ");
+            for(Word word:sentence.getWords()){
+                stringBuilder.append(word.getWord());
+                stringBuilder.append(" ");
+            }
+            stringBuilder.deleteCharAt(stringBuilder.length()-1);
+            stringBuilder.append(sentence.getPunctuationMark());
         }
-        newSentences[newSentences.length - 1] = sentence;
-        Text newText = new Text(text.getHeader(), newSentences);
-        return newText;
+
+        return stringBuilder.toString();
     }
 }

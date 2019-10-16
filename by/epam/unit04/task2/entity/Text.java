@@ -1,16 +1,24 @@
 package by.epam.unit04.task2.entity;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Text {
 
     private String header;
 
-    private Sentence[] sentences;
+    private List<Sentence> sentences;
 
-    public Text(String header, Sentence[] sentences) {
+    public Text(String header, List<Sentence> sentences) {
         this.header = header;
         this.sentences = sentences;
+    }
+
+    public Text(String header, Sentence sentence) {
+        this.header = header;
+        this.sentences = new LinkedList<>();
+        this.sentences.add(sentence);
     }
 
     public String getHeader() {
@@ -21,12 +29,16 @@ public class Text {
         this.header = header;
     }
 
-    public Sentence[] getSentences() {
+    public List<Sentence> getSentences() {
         return sentences;
     }
 
-    public void setSentences(Sentence[] sentences) {
+    public void setSentences(List<Sentence> sentences) {
         this.sentences = sentences;
+    }
+
+    public void addSentence(Sentence sentence){
+        this.sentences.add(sentence);
     }
 
     @Override
@@ -37,22 +49,21 @@ public class Text {
         Text text = (Text) o;
 
         if (!header.equals(text.header)) return false;
-        return Arrays.equals(sentences, text.sentences);
+        return sentences.equals(text.sentences);
     }
 
     @Override
     public int hashCode() {
         int result = header.hashCode();
-        result = 31 * result + Arrays.hashCode(sentences);
+        result = 31 * result + sentences.hashCode();
         return result;
     }
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Sentence sentence : sentences) {
-            stringBuilder.append(sentence + " ");
-        }
-        return stringBuilder.toString();
+        return "Text{" +
+                "header='" + header + '\'' +
+                ", sentences=" + sentences +
+                '}';
     }
 }
