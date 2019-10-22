@@ -1,4 +1,4 @@
-package by.epam.financer.beans;
+package by.epam.financer.bean;
 
 public class Account {
 
