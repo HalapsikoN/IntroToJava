@@ -1,4 +1,5 @@
 package by.epam.financer.dao;
+//pattern "Factory"
 
 import by.epam.financer.dao.impl.FileAccountDAO;
 import by.epam.financer.dao.impl.FileUserDAO;

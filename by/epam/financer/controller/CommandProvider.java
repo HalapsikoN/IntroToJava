@@ -1,4 +1,5 @@
 package by.epam.financer.controller;
+//pattern "Command"
 
 import by.epam.financer.controller.command.Command;
 import by.epam.financer.controller.impl.*;

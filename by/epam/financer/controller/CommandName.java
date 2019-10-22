@@ -1,4 +1,5 @@
 package by.epam.financer.controller;
+//нужно ли в бины или папку?
 
 public enum CommandName {
     SIGN_IN,

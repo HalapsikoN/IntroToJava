@@ -1,4 +1,5 @@
 package by.epam.financer.controller;
+//parse and control
 
 import by.epam.financer.controller.command.Command;
 

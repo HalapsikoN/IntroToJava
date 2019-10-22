@@ -1,4 +1,5 @@
 package by.epam.financer.service;
+//pattern "Factory"
 
 import by.epam.financer.service.impl.AccountServiceImpl;
 import by.epam.financer.service.impl.UserServiceImpl;
