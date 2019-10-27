@@ -4,6 +4,13 @@ public class User {
 
     private String login;
     private String password;
+    private boolean authorized;
+
+    public User(String login, String password, boolean authorized) {
+        this.login = login;
+        this.password = password;
+        this.authorized = authorized;
+    }
 
     public User(String login, String password) {
         this.login = login;
@@ -26,6 +33,14 @@ public class User {
         this.password = password;
     }
 
+    public boolean isAuthorized() {
+        return authorized;
+    }
+
+    public void setAuthorized(boolean authorized) {
+        this.authorized = authorized;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -33,6 +48,7 @@ public class User {
 
         User user = (User) o;
 
+        if (authorized != user.authorized) return false;
         if (!login.equals(user.login)) return false;
         return password.equals(user.password);
     }
@@ -41,6 +57,7 @@ public class User {
     public int hashCode() {
         int result = login.hashCode();
         result = 31 * result + password.hashCode();
+        result = 31 * result + (authorized ? 1 : 0);
         return result;
     }
 
@@ -49,6 +66,7 @@ public class User {
         return "User{" +
                 "login='" + login + '\'' +
                 ", password='" + password + '\'' +
+                ", authorized=" + authorized +
                 '}';
     }
 }

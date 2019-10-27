@@ -1,15 +1,13 @@
 package by.epam.financer.dao;
 
-import by.epam.unit04.task3.entity.Account;
+import by.epam.financer.bean.Account;
 
 public interface AccountDAO {
-    void addAccount(Account account) throws DAOException;
+    boolean addAccount(Account account) throws DAOException;
 
-    void getAccount(int numberOfAccount) throws DAOException;
+    Account getAccount(int numberOfAccount) throws DAOException;
 
-    void updateAccount(Account account) throws DAOException;
+    boolean updateAccount(Account account) throws DAOException;
 
-    void deleteAccount(int numberOfAccount) throws DAOException;
-
-    void deleteAccount(Account account) throws DAOException;
+    boolean deleteAccount(int numberOfAccount) throws DAOException;
 }

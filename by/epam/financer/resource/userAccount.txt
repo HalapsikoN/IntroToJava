@@ -1,0 +1,5 @@
+{"login":"Kirill","password":"Mifodiy","authorized":false}
+{"numberOfAccount":555,"amount":33333.0,"blocked":true}
+{"numberOfAccount":679,"amount":55.0,"blocked":true}
+{"numberOfAccount":100,"amount":300.0,"blocked":true}
+{"numberOfAccount":200,"amount":310.0,"blocked":false}

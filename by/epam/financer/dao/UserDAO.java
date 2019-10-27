@@ -1,5 +1,9 @@
 package by.epam.financer.dao;
 
+import by.epam.financer.bean.User;
+
 public interface UserDAO {
-    void signIn(String login, String password) throws DAOException;
+    User takeUser(String login) throws DAOException;
+
+    void resetUser(User user) throws DAOException;
 }

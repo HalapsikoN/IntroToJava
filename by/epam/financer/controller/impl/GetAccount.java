@@ -1,5 +1,6 @@
 package by.epam.financer.controller.impl;
 
+import by.epam.financer.bean.Account;
 import by.epam.financer.controller.command.Command;
 import by.epam.financer.service.AccountService;
 import by.epam.financer.service.IncorrectDataException;
@@ -12,7 +13,7 @@ import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class DeleteAccount implements Command {
+public class GetAccount implements Command {
 
     @Override
     public String execute(String request) {
@@ -29,11 +30,12 @@ public class DeleteAccount implements Command {
         AccountService accountService = serviceFactory.getAccountService();
         try {
             int numberOfAccount = Integer.valueOf(numberOfAccountString);
-
-            if (accountService.deleteAccount(login, numberOfAccount)) {
-                response = "Successfully deleted! (" + numberOfAccount + ")";
+            Account account = accountService.getAccount(login, numberOfAccount);
+            if (account != null) {
+                response = "Account (" + account.getNumberOfAccount() + ") with the amount (" + account.getAmount()
+                        + ") now is " + (account.isBlocked() ? "blocked." : "active.");
             } else {
-                response = "There is no account with such number.";
+                response = "There is no such account.";
             }
         } catch (ServiceException e) {
             try {

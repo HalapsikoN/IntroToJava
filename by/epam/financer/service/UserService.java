@@ -1,5 +1,7 @@
 package by.epam.financer.service;
 
 public interface UserService {
-    void signIn(String login, String password) throws ServiceException;
+    boolean signIn(String login, String password) throws ServiceException, IncorrectDataException;
+
+    boolean signOut(String login) throws ServiceException, IncorrectDataException;
 }

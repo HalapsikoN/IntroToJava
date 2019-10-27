@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-10-28T01:01:36</date>
+  <millis>1572213696358</millis>
+  <sequence>3</sequence>
+  <logger>global</logger>
+  <level>INFO</level>
+  <class>by.epam.financer.controller.impl.UpdateAccount</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>by.epam.financer.dao.DAOException: NoSuchFileException</message>
+  <exception>
+    <message>by.epam.financer.service.ServiceException: by.epam.financer.dao.DAOException: NoSuchFileException</message>
+    <frame>
+      <class>by.epam.financer.service.impl.AccountServiceImpl</class>
+      <method>checkUser</method>
+      <line>22</line>
+    </frame>
+    <frame>
+      <class>by.epam.financer.service.impl.AccountServiceImpl</class>
+      <method>updateAccount</method>
+      <line>82</line>
+    </frame>
+    <frame>
+      <class>by.epam.financer.controller.impl.UpdateAccount</class>
+      <method>execute</method>
+      <line>40</line>
+    </frame>
+    <frame>
+      <class>by.epam.financer.controller.Controller</class>
+      <method>executeTask</method>
+      <line>20</line>
+    </frame>
+    <frame>
+      <class>by.epam.financer.Main</class>
+      <method>main</method>
+      <line>25</line>
+    </frame>
+  </exception>
+</record>
+<record>
+  <date>2019-10-28T01:01:36</date>
+  <millis>1572213696359</millis>
+  <sequence>4</sequence>
+  <logger>global</logger>
+  <level>INFO</level>
+  <class>by.epam.financer.controller.impl.DeleteAccount</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>by.epam.financer.dao.DAOException: NoSuchFileException</message>
+  <exception>
+    <message>by.epam.financer.service.ServiceException: by.epam.financer.dao.DAOException: NoSuchFileException</message>
+    <frame>
+      <class>by.epam.financer.service.impl.AccountServiceImpl</class>
+      <method>checkUser</method>
+      <line>22</line>
+    </frame>
+    <frame>
+      <class>by.epam.financer.service.impl.AccountServiceImpl</class>
+      <method>deleteAccount</method>
+      <line>100</line>
+    </frame>
+    <frame>
+      <class>by.epam.financer.controller.impl.DeleteAccount</class>
+      <method>execute</method>
+      <line>33</line>
+    </frame>
+    <frame>
+      <class>by.epam.financer.controller.Controller</class>
+      <method>executeTask</method>
+      <line>20</line>
+    </frame>
+    <frame>
+      <class>by.epam.financer.Main</class>
+      <method>main</method>
+      <line>26</line>
+    </frame>
+  </exception>
+</record>
+<record>
+  <date>2019-10-28T01:01:36</date>
+  <millis>1572213696360</millis>
+  <sequence>5</sequence>
+  <logger>global</logger>
+  <level>INFO</level>
+  <class>by.epam.financer.controller.impl.SignOut</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>by.epam.financer.dao.DAOException: NoSuchFileException</message>
+  <exception>
+    <message>by.epam.financer.service.ServiceException: by.epam.financer.dao.DAOException: NoSuchFileException</message>
+    <frame>
+      <class>by.epam.financer.service.impl.UserServiceImpl</class>
+      <method>signOut</method>
+      <line>62</line>
+    </frame>
+    <frame>
+      <class>by.epam.financer.controller.impl.SignOut</class>
+      <method>execute</method>
+      <line>31</line>
+    </frame>
+    <frame>
+      <class>by.epam.financer.controller.Controller</class>
+      <method>executeTask</method>
+      <line>20</line>
+    </frame>
+    <frame>
+      <class>by.epam.financer.Main</class>
+      <method>main</method>
+      <line>28</line>
+    </frame>
+  </exception>
+</record>
+</log>

@@ -1,15 +1,14 @@
 package by.epam.financer.service;
 
-import by.epam.unit04.task3.entity.Account;
+import by.epam.financer.bean.Account;
+
 
 public interface AccountService {
-    void addAccount(Account account) throws ServiceException;
+    boolean addAccount(String userLogin, Account account) throws ServiceException, IncorrectDataException;
 
-    void getAccount(int numberOfAccount) throws ServiceException;
+    Account getAccount(String userLogin, int numberOfAccount) throws ServiceException, IncorrectDataException;
 
-    void updateAccount(Account account) throws ServiceException;
+    boolean updateAccount(String userLogin, Account account) throws ServiceException, IncorrectDataException;
 
-    void deleteAccount(int numberOfAccount) throws ServiceException;
-
-    void deleteAccount(Account account) throws ServiceException;
+    boolean deleteAccount(String userLogin, int numberOfAccount) throws ServiceException, IncorrectDataException;
 }
