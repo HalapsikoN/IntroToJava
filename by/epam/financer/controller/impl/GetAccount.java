@@ -7,12 +7,6 @@ import by.epam.financer.service.IncorrectDataException;
 import by.epam.financer.service.ServiceException;
 import by.epam.financer.service.ServiceFactory;
 
-import java.io.IOException;
-import java.util.logging.FileHandler;
-import java.util.logging.Handler;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 public class GetAccount implements Command {
 
     @Override
@@ -38,14 +32,7 @@ public class GetAccount implements Command {
                 response = "There is no such account.";
             }
         } catch (ServiceException e) {
-            try {
-                Handler handler = new FileHandler(LOG_PATH);
-                Logger logger = Logger.getGlobal();
-                logger.addHandler(handler);
-                logger.setUseParentHandlers(false);
-                logger.log(Level.INFO, e.getMessage(), e);
-            } catch (IOException e1) {
-            }
+            writeLog(e);
             response = "Something wrong...";
         } catch (IncorrectDataException e) {
             response = e.getMessage() + ".";
