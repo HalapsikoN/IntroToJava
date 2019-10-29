@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FileInformationReader implements Cloneable {
+public class FileInformationReader implements AutoCloseable {
 
     private BufferedReader fileReader;
 

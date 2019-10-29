@@ -24,10 +24,8 @@ public class FileAccountDAO implements AccountDAO {
         }
 
         List<String> list;
-        try {
-            FileInformationReader reader = new FileInformationReader(file);
+        try (FileInformationReader reader = new FileInformationReader(file)){
             list = reader.readAllFile();
-            reader.close();
         } catch (IOException e) {
             throw new DAOException("DAO_addAccount", e);
         }
@@ -36,10 +34,8 @@ public class FileAccountDAO implements AccountDAO {
         String newAccount = gson.toJson(account);
         list.add(newAccount);
 
-        try {
-            FileInformationWriter writer = new FileInformationWriter(file);
+        try (FileInformationWriter writer = new FileInformationWriter(file)){
             writer.write(list);
-            writer.close();
         } catch (IOException e) {
             throw new DAOException("DAO_addAccount", e);
         }
@@ -54,10 +50,8 @@ public class FileAccountDAO implements AccountDAO {
         }
 
         List<String> list;
-        try {
-            FileInformationReader reader = new FileInformationReader(file);
+        try (FileInformationReader reader = new FileInformationReader(file)){
             list = reader.getAllLinesWithString(Account.class.getDeclaredFields()[0].getName());
-            reader.close();
         } catch (IOException e) {
             throw new DAOException("DAO_getAccount", e);
         }
@@ -81,10 +75,8 @@ public class FileAccountDAO implements AccountDAO {
         }
 
         List<String> list;
-        try {
-            FileInformationReader reader = new FileInformationReader(file);
+        try (FileInformationReader reader = new FileInformationReader(file)){
             list = reader.readAllFile();
-            reader.close();
         } catch (IOException e) {
             throw new DAOException("DAO_updateAccount", e);
         }
@@ -94,10 +86,8 @@ public class FileAccountDAO implements AccountDAO {
         String newInformationAccount = gson.toJson(account);
         list.set(list.indexOf(oldAccountInformation), newInformationAccount);
 
-        try {
-            FileInformationWriter writer = new FileInformationWriter(file);
+        try (FileInformationWriter writer = new FileInformationWriter(file)){
             writer.write(list);
-            writer.close();
         } catch (IOException e) {
             throw new DAOException("DAO_updateAccount", e);
         }
@@ -113,10 +103,8 @@ public class FileAccountDAO implements AccountDAO {
         }
 
         List<String> list;
-        try {
-            FileInformationReader reader = new FileInformationReader(file);
+        try (FileInformationReader reader = new FileInformationReader(file)){
             list = reader.readAllFile();
-            reader.close();
         } catch (IOException e) {
             throw new DAOException("DAO_deleteAccount", e);
         }
@@ -125,10 +113,8 @@ public class FileAccountDAO implements AccountDAO {
         String oldAccountInformation = gson.toJson(oldAccount);
         list.remove(oldAccountInformation);
 
-        try {
-            FileInformationWriter writer = new FileInformationWriter(file);
+        try (FileInformationWriter writer = new FileInformationWriter(file)){
             writer.write(list);
-            writer.close();
         } catch (IOException e) {
             throw new DAOException("DAO_deleteAccount", e);
         }

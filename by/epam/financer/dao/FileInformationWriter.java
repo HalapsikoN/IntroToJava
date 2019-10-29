@@ -3,7 +3,7 @@ package by.epam.financer.dao;
 import java.io.*;
 import java.util.List;
 
-public class FileInformationWriter implements Closeable {
+public class FileInformationWriter implements AutoCloseable {
 
     private BufferedWriter fileWriter;
 

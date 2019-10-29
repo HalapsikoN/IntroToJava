@@ -23,12 +23,12 @@ public class FileUserDAO implements UserDAO {
         }
 
         List<String> list;
-        try {
-            FileInformationReader reader = new FileInformationReader(file);
+        try (FileInformationReader reader = new FileInformationReader(file)){
             list = reader.getAllLinesWithString(User.class.getDeclaredFields()[0].getName());
-            reader.close();
         } catch (IOException e) {
             throw new DAOException("DAO_takeUser", e);
+        }finally {
+
         }
 
         Gson gson = new Gson();
@@ -51,26 +51,25 @@ public class FileUserDAO implements UserDAO {
 
         List<String> list;
         String oldUserInformation;
-        try {
-            FileInformationReader reader = new FileInformationReader(file);
+        try (FileInformationReader reader = new FileInformationReader(file)){
             list = reader.readAllFile();
-            reader.close();
-            FileInformationReader reader1 = new FileInformationReader(file);
-            oldUserInformation = reader1.getAllLinesWithString(user.getLogin()).get(0);
-            reader1.close();
         } catch (IOException e) {
             throw new DAOException("DAO_signIn", e);
         }
+        try (FileInformationReader reader = new FileInformationReader(file)){
+            oldUserInformation = reader.getAllLinesWithString(user.getLogin()).get(0);
+        } catch (IOException e) {
+            throw new DAOException("DAO_signIn", e);
+        }
+
 
         Gson gson = new Gson();
         String newUserInformation = gson.toJson(user);
 
         list.set(list.indexOf(oldUserInformation), newUserInformation);
 
-        try {
-            FileInformationWriter writer = new FileInformationWriter(file);
+        try (FileInformationWriter writer = new FileInformationWriter(file)){
             writer.write(list);
-            writer.close();
         } catch (IOException e) {
             throw new DAOException("DAO_signIn", e);
         }
